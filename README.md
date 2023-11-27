@@ -1,6 +1,5 @@
 # My Hunter
 
-
 ## Story
 
 As the United States just got involved in a war with all their rivals to spread their beloved and universal freedom,
