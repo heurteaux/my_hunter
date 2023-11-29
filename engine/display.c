@@ -13,7 +13,9 @@ void display_game_object_chain(sfRenderWindow *window, game_object *game_object_
     game_object *current_game_object = game_object_root->next;
 
     while (current_game_object != NULL) {
-        current_game_object->display_game_object(window);
-        current_game_object = current_game_object->next;
+        if (current_game_object->display_game_object != NULL) {
+            current_game_object->display_game_object(window);
+            current_game_object = current_game_object->next;
+        }
     }
 }
