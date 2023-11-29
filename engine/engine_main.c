@@ -90,8 +90,8 @@ void move_all_enemy(game_object_t *linked_list_head)
 
     while (temp != NULL) {
         if (temp->type == ENEMY) {
-            ((enemy_object_t *) temp->data)->pos_y += 2;
-            ((enemy_object_t *) temp->data)->pos_x += 2;
+            ((enemy_object_t *) temp->data)->pos_y += 10;
+            ((enemy_object_t *) temp->data)->pos_x += 10;
             sfSprite_setPosition(
                 (sfSprite *) ((enemy_object_t *) temp->data)->sprite,
                 (sfVector2f){(float) ((enemy_object_t *) temp->data)->pos_y,
@@ -102,7 +102,7 @@ void move_all_enemy(game_object_t *linked_list_head)
 }
 
 void game_behaviour(game_object_t *linked_list_head,
-    __attribute__((unused)) sfEvent event, sfTime main_time)
+    __attribute__((unused)) sfEvent event, sfTime main_time, sfClock *clock)
 {
     double seconds = (double) main_time.microseconds / 1000000.0;
     enemy_object_t *new_enemy = malloc(sizeof(enemy_object_t) * 1);
@@ -114,6 +114,7 @@ void game_behaviour(game_object_t *linked_list_head,
         new_enemy->sprite =
             get_enemy_sprite(new_enemy->pos_y, new_enemy->pos_x);
         linked_list_push(linked_list_head, new_enemy, ENEMY);
+        sfClock_restart(clock);
     }
     move_all_enemy(linked_list_head);
 }
@@ -155,9 +156,9 @@ void engine_main(void)
     while (sfRenderWindow_isOpen(game_window)) {
         time = sfClock_getElapsedTime(clock);
         while (sfRenderWindow_pollEvent(game_window, &game_events)) {
-            game_behaviour(linked_list_game_objects, game_events, time);
             on_close_button_pressed(game_events, game_window);
         }
+        game_behaviour(linked_list_game_objects, game_events, time, clock);
         handle_displaying(game_window, background, linked_list_game_objects);
     }
 }
