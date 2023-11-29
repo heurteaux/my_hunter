@@ -17,7 +17,7 @@ SRCS	:=	$(shell find $(SRC_DIRS) -name "*.c" \
 
 OBJS	=	$(SRCS:.c=.o)
 
-CFLAGS	= -Werror -Wall -Wextra -g3
+CFLAGS	=  -Wall -Wextra -g3
 
 ##TEST_NAME	=	unit_tests
 
