@@ -27,7 +27,8 @@ void handle_displaying(sfRenderWindow *game_window, sfSprite *background,
     sfRenderWindow_display(en_var->game_window);
 }
 
-static void collision_check(sfEvent event, game_object_t *temp)
+static void collision_check(sfEvent event, game_object_t *temp, int *score,
+    game_object_t *linked_list_test)
 {
     sfFloatRect spriteBounds;
 
@@ -38,18 +39,20 @@ static void collision_check(sfEvent event, game_object_t *temp)
             && event.mouseButton.x < spriteBounds.left + spriteBounds.width
             && event.mouseButton.y > spriteBounds.top
             && event.mouseButton.y < spriteBounds.top + spriteBounds.height) {
-            ((enemy_object_t *) temp->data)->rect = (sfIntRect){0, 0, 0, 0};
+            destroy_game_object(temp, linked_list_test);
+            *score += 1;
         }
     }
 }
 
-void colision_detection(sfEvent event, game_object_t *linked_list_head)
+void colision_detection(
+    sfEvent event, game_object_t *linked_list_head, int *score)
 {
     game_object_t *temp = linked_list_head;
 
     while (temp != NULL) {
         if (temp->type == ENEMY) {
-            collision_check(event, temp);
+            collision_check(event, temp, score, linked_list_head);
         }
         temp = temp->next;
     }
@@ -84,15 +87,17 @@ void engine_main(void)
 
     en_var->rate_increment = 0;
     en_var->speed_increment = 0;
+    en_var->score = 0;
     while (sfRenderWindow_isOpen(en_var->game_window)) {
         en_var->time = sfClock_getElapsedTime(en_var->clock);
         game_behaviour(en_var);
         while (sfRenderWindow_pollEvent(
             en_var->game_window, &en_var->game_events)) {
             on_close_button_pressed(en_var->game_events, en_var->game_window);
-            colision_detection(
-                en_var->game_events, en_var->linked_list_game_objects);
+            colision_detection(en_var->game_events,
+                en_var->linked_list_game_objects, &en_var->score);
         }
         display_and_mouse_pos(en_var);
     }
+    sfRenderWindow_destroy(en_var->game_window);
 }

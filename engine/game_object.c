@@ -7,6 +7,7 @@
 
 #include "../includes/game_object.h"
 #include <stdlib.h>
+#include "../includes/engine.h"
 
 game_object_t *init_game_object(game_object_type_t type, void *data)
 {
@@ -30,4 +31,19 @@ void draw_game_objects(
         }
         temp = temp->next;
     }
+}
+
+void destroy_game_object(game_object_t *game_object, game_object_t *head)
+{
+    game_object_t *temp = game_object->next;
+    game_object_t *temp2 = head;
+
+    if (game_object->type == ENEMY) {
+        destroy_enemy_object(game_object->data);
+    }
+    while (temp2->next != game_object && temp2->next != NULL) {
+        temp2 = temp2->next;
+    }
+    temp2->next = temp;
+    free(game_object);
 }

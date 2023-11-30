@@ -12,13 +12,13 @@
 typedef enum game_object_type_s {
     ENEMY,
     HEAD
-}game_object_type_t;
+} game_object_type_t;
 
 typedef struct game_object_s {
     void *data;
     game_object_type_t type;
     struct game_object_s *next;
-}game_object_t;
+} game_object_t;
 
 typedef struct enemy_object_s {
     sfSprite *sprite;
@@ -27,4 +27,8 @@ typedef struct enemy_object_s {
     sfIntRect rect;
     sfTime time;
     sfClock *clock;
-}enemy_object_t;
+    sfTexture *texture;
+} enemy_object_t;
+
+void destroy_game_object(
+    game_object_t *game_object, game_object_t *linked_list_head);

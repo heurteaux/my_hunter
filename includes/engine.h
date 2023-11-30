@@ -24,6 +24,7 @@ typedef struct engine_variables_s {
     sfVector2i mouse_pos;
     float speed_increment;
     float rate_increment;
+    int score;
 } engine_variables_t;
 
 void animate_all_enemy(game_object_t *linked_list_head);
@@ -41,3 +42,5 @@ void draw_game_objects(
     sfRenderWindow *game_window, game_object_t *linked_list_head);
 
 void display_and_mouse_pos(engine_variables_t *en_var);
+
+void destroy_enemy_object(enemy_object_t *enemy_object);

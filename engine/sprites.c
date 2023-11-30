@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
+#include "../includes/game_object.h"
 
 void set_sprite_scale(sfSprite *sprite, sfRenderWindow *game_window)
 {
@@ -21,13 +22,14 @@ void set_sprite_scale(sfSprite *sprite, sfRenderWindow *game_window)
     sfSprite_setScale(sprite, (sfVector2f){scale_factor, scale_factor});
 }
 
-sfSprite *get_enemy_sprite(int x, int y)
+sfSprite *get_enemy_sprite(int x, int y, enemy_object_t *new_enemy)
 {
     sfTexture *sprite_texture =
         sfTexture_createFromFile("assets/nyan_cat.png", NULL);
     sfSprite *result = sfSprite_create();
 
     sfSprite_setTexture(result, sprite_texture, sfTrue);
+    new_enemy->texture = sprite_texture;
     sfSprite_setPosition(result, (sfVector2f){(float) x, (float) y});
     return result;
 }

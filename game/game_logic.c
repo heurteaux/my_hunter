@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "../includes/engine.h"
 #include "../includes/graphic.h"
-#include "../includes/game_object.h"
+#include <stdio.h>
 
 sfSprite *get_background_sprite(void)
 {
@@ -51,7 +51,7 @@ void game_behaviour(engine_variables_t *en_var)
         new_enemy->pos_x = -100;
         new_enemy->rect = (sfIntRect){0, 0, 892 / 6, 94};
         new_enemy->sprite =
-            get_enemy_sprite(new_enemy->pos_x, new_enemy->pos_y);
+            get_enemy_sprite(new_enemy->pos_x, new_enemy->pos_y, new_enemy);
         linked_list_push(en_var->linked_list_game_objects, new_enemy, ENEMY);
         sfClock_restart(en_var->clock);
         new_enemy->clock = sfClock_create();
