@@ -25,6 +25,8 @@ typedef struct engine_variables_s {
     float speed_increment;
     float rate_increment;
     int score;
+    sfFont *score_font;
+    sfText *score_text;
 } engine_variables_t;
 
 void animate_all_enemy(game_object_t *linked_list_head);

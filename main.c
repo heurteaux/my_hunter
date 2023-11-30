@@ -5,14 +5,10 @@
 ** main.c
 */
 
-#include <fcntl.h>
 #include "includes/internal_functions.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
-#include <sys/stat.h>
-
-const char *HELP_MENU_TEXT_FILE_PATH = "assets/help_message";
 
 static int my_putstr(char const *str)
 {

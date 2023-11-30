@@ -12,3 +12,5 @@
 void game_behaviour(engine_variables_t *en_var);
 
 sfSprite *get_background_sprite(void);
+
+void handle_score(engine_variables_t *en_var);

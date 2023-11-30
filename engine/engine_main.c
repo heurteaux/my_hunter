@@ -24,6 +24,7 @@ void handle_displaying(sfRenderWindow *game_window, sfSprite *background,
     draw_game_objects(game_window, linked_list_head);
     sfRenderWindow_drawSprite(
         en_var->game_window, en_var->cursor_sprite, NULL);
+    sfRenderWindow_drawText(en_var->game_window, en_var->score_text, NULL);
     sfRenderWindow_display(en_var->game_window);
 }
 
@@ -81,13 +82,24 @@ engine_variables_t *init_engine_var(void)
     return en_var;
 }
 
+static void setup_engine_var(engine_variables_t *en_var)
+{
+    en_var->score_font = sfFont_createFromFile("assets/font.ttf");
+    en_var->score_text = sfText_create();
+    sfText_setFont(en_var->score_text, en_var->score_font);
+    sfText_setCharacterSize(en_var->score_text, 50);
+    sfText_setPosition(en_var->score_text, (sfVector2f){1500, 0});
+    sfText_setString(en_var->score_text, "Score : 0 ( very bad )");
+    en_var->rate_increment = 0;
+    en_var->speed_increment = 0;
+    en_var->score = 0;
+}
+
 void engine_main(void)
 {
     engine_variables_t *en_var = init_engine_var();
 
-    en_var->rate_increment = 0;
-    en_var->speed_increment = 0;
-    en_var->score = 0;
+    setup_engine_var(en_var);
     while (sfRenderWindow_isOpen(en_var->game_window)) {
         en_var->time = sfClock_getElapsedTime(en_var->clock);
         game_behaviour(en_var);
@@ -96,6 +108,7 @@ void engine_main(void)
             on_close_button_pressed(en_var->game_events, en_var->game_window);
             colision_detection(en_var->game_events,
                 en_var->linked_list_game_objects, &en_var->score);
+            handle_score(en_var);
         }
         display_and_mouse_pos(en_var);
     }
