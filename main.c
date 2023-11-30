@@ -10,4 +10,5 @@
 int main(int argc, char **argv)
 {
     engine_main();
+    return 0;
 }

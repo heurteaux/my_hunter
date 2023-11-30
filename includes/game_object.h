@@ -24,4 +24,7 @@ typedef struct enemy_object_s {
     sfSprite *sprite;
     int pos_x;
     int pos_y;
+    sfIntRect rect;
+    sfTime time;
+    sfClock *clock;
 }enemy_object_t;

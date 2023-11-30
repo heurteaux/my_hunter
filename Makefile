@@ -17,7 +17,7 @@ SRCS	:=	$(shell find $(SRC_DIRS) -name "*.c" \
 
 OBJS	=	$(SRCS:.c=.o)
 
-CFLAGS	=  -Wall -Wextra -g3
+CFLAGS	=  -Werror -Wall -Wextra -g3
 
 ##TEST_NAME	=	unit_tests
 
@@ -27,7 +27,9 @@ CFLAGS	=  -Wall -Wextra -g3
 
 $(NAME):	$(OBJS)
 ##	make -C lib/my/
-	gcc -o $(NAME) main.c $(OBJS) -g3 -lcsfml-graphics -lcsfml-audio -lcsfml-system
+	gcc -o $(NAME) main.c $(OBJS) -g3 \
+	-lcsfml-graphics -lcsfml-audio \
+	-lcsfml-system -lcsfml-window
 
 all: $(NAME)
 
