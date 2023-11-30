@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 static int my_putstr(char const *str)
 {
@@ -20,9 +21,13 @@ static int my_putstr(char const *str)
 
 static int help_menu(int argc, char **argv)
 {
+    int fd = open("assets/help_text", O_RDONLY);
+    char *buffer[10000] = {0};
+
+    read(fd, buffer, 10000);
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && argv[i][1] == 'h') {
-            my_putstr("A help message should be displayed here.");
+            my_putstr((const char *)buffer);
         }
     }
     return 0;

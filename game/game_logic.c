@@ -6,10 +6,10 @@
 */
 
 #include <SFML/Graphics.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "../includes/engine.h"
 #include "../includes/graphic.h"
-#include <stdio.h>
 
 sfSprite *get_background_sprite(void)
 {
