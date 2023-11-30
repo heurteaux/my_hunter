@@ -25,6 +25,7 @@ void handle_displaying(sfRenderWindow *game_window, sfSprite *background,
     sfRenderWindow_drawSprite(
         en_var->game_window, en_var->cursor_sprite, NULL);
     sfRenderWindow_drawText(en_var->game_window, en_var->score_text, NULL);
+    sfRenderWindow_drawText(en_var->game_window, en_var->highscore_text, NULL);
     sfRenderWindow_display(en_var->game_window);
 }
 
@@ -89,7 +90,10 @@ static void setup_engine_var(engine_variables_t *en_var)
     sfText_setFont(en_var->score_text, en_var->score_font);
     sfText_setCharacterSize(en_var->score_text, 50);
     sfText_setPosition(en_var->score_text, (sfVector2f){1500, 0});
-    sfText_setString(en_var->score_text, "Score : 0 ( very bad )");
+    en_var->highscore_text = sfText_create();
+    sfText_setFont(en_var->highscore_text, en_var->score_font);
+    sfText_setCharacterSize(en_var->highscore_text, 50);
+    sfText_setPosition(en_var->highscore_text, (sfVector2f){1333, 70});
     en_var->rate_increment = 0;
     en_var->speed_increment = 0;
     en_var->score = 0;
