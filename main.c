@@ -22,32 +22,11 @@ static int my_putstr(char const *str)
     return 0;
 }
 
-static char *get_file_content(const char *file_path)
-{
-    int fd = open(file_path, O_RDONLY);
-    char *buffer;
-    struct stat file_infos;
-
-    if (fd == (-1))
-        exit(84);
-    stat(file_path, &file_infos);
-    buffer = malloc(sizeof(char) * (file_infos.st_size + 1));
-    for (int i = 0; i < (file_infos.st_size + 1); i++) {
-        buffer[i] = 0;
-    }
-    read(fd, buffer, file_infos.st_size);
-    return buffer;
-}
-
 static int help_menu(int argc, char **argv)
 {
-    char *file_content;
-
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && argv[i][1] == 'h') {
-            file_content = get_file_content(HELP_MENU_TEXT_FILE_PATH);
-            my_putstr(file_content);
-            free(file_content);
+            my_putstr("A help message should be displayed here.");
         }
     }
     return 0;
