@@ -22,6 +22,8 @@ typedef struct engine_variables_s {
     sfTexture *cursor_texture;
     sfSprite *cursor_sprite;
     sfVector2i mouse_pos;
+    float speed_increment;
+    float rate_increment;
 } engine_variables_t;
 
 void animate_all_enemy(game_object_t *linked_list_head);

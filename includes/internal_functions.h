@@ -9,3 +9,5 @@
 #include <SFML/Graphics.h>
 
 void engine_main(void);
+
+int my_strcmp(char const *s1, char const *s2);

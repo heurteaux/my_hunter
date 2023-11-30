@@ -82,10 +82,11 @@ void engine_main(void)
 {
     engine_variables_t *en_var = init_engine_var();
 
+    en_var->rate_increment = 0;
+    en_var->speed_increment = 0;
     while (sfRenderWindow_isOpen(en_var->game_window)) {
         en_var->time = sfClock_getElapsedTime(en_var->clock);
-        game_behaviour(en_var->linked_list_game_objects, en_var->game_events,
-            en_var->time, en_var->clock);
+        game_behaviour(en_var);
         while (sfRenderWindow_pollEvent(
             en_var->game_window, &en_var->game_events)) {
             on_close_button_pressed(en_var->game_events, en_var->game_window);
