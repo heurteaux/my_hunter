@@ -10,7 +10,7 @@
 
 static void check_minus(int min_cnt, long *number)
 {
-    if (min_cnt % 2 == 1 ) {
+    if (min_cnt % 2 == 1) {
         *number = *number * (-1);
     }
 }
