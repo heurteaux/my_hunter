@@ -117,7 +117,7 @@ void engine_main(void)
             handle_score(en_var);
         }
         if (en_var->life <= 0) {
-            my_putstr("You lost !");
+            game_over(en_var);
             break;
         }
         display_and_mouse_pos(en_var);
