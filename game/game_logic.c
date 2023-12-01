@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "../includes/engine.h"
 #include "../includes/graphic.h"
+#include "../includes/game.h"
 
 sfSprite *get_background_sprite(void)
 {
@@ -45,6 +46,7 @@ void game_behaviour(engine_variables_t *en_var)
     double seconds = (double) en_var->time.microseconds / 1000000.0;
     enemy_object_t *new_enemy = malloc(sizeof(enemy_object_t) * 1);
 
+    check_enemy_out(en_var->linked_list_game_objects, en_var);
     srand(en_var->time.microseconds);
     if (seconds > 0.6 - en_var->rate_increment && rand() % 3 == 0) {
         new_enemy->pos_y = rand() % 1080;

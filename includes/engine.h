@@ -28,6 +28,7 @@ typedef struct engine_variables_s {
     sfFont *score_font;
     sfText *score_text;
     sfText *highscore_text;
+    int life;
 } engine_variables_t;
 
 void animate_all_enemy(game_object_t *linked_list_head);

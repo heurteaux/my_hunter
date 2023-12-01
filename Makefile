@@ -42,5 +42,7 @@ re: fclean all
 
 dev_test: $(OBJS)
 ##	make -C lib/my/
-	gcc -o $(NAME) main.c $(OBJS) -g3
+	gcc -o $(NAME) main.c $(OBJS) -g3 \
+    -lcsfml-graphics -lcsfml-audio \
+    -lcsfml-system -lcsfml-window
 	make clean

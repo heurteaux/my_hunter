@@ -15,6 +15,7 @@
 #include "../includes/graphic.h"
 #include "../includes/game_object.h"
 #include "../includes/internal_functions.h"
+#include "../includes/internal_functions.h"
 
 void handle_displaying(sfRenderWindow *game_window, sfSprite *background,
     game_object_t *linked_list_head, engine_variables_t *en_var)
@@ -97,6 +98,7 @@ static void setup_engine_var(engine_variables_t *en_var)
     en_var->rate_increment = 0;
     en_var->speed_increment = 0;
     en_var->score = 0;
+    en_var->life = 5;
 }
 
 void engine_main(void)
@@ -113,6 +115,10 @@ void engine_main(void)
             colision_detection(en_var->game_events,
                 en_var->linked_list_game_objects, &en_var->score);
             handle_score(en_var);
+        }
+        if (en_var->life <= 0) {
+            my_putstr("You lost !");
+            break;
         }
         display_and_mouse_pos(en_var);
     }
