@@ -5,9 +5,9 @@
 ** nbr_to_str.c
 */
 
-#include <unistd.h>
 #include <memory.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static const int ZERO = 48;
 

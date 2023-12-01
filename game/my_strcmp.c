@@ -14,11 +14,3 @@ int my_strcmp(char const *s1, char const *s2)
     }
     return 0;
 }
-
-/*void main()
-{
-    char *str1 = "testestts";
-    char *str2 = "texsdsqd";
-    int result = my_strcmp(str1, str2);
-    printf("%d\n", result);
-    }*/
