@@ -1,6 +1,9 @@
 My_Hunter:
 
-In this game you should click on the nyan cats that fall from the sky with grace (they are
-animated and deleted when clicked). The difficulty increases slowly as time passes, highscores are saved and displayed
-along current used score. The controls are simple, you point to where you want to aim and then click on what you want to shoot at
-(nyan cats). The center of the crossair is represented by Flavio's fingers pinching.
+Goal:
+Make the highest score possible !
+
+Features:
+The difficulty increases as time passes. Score is displayed, highscore is stored and displayed.
+Enemies are spawned at a random position.
+To kill an enemy you should aim at it between the two fingers pinching (on the custom cursor).
